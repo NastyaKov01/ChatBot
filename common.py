@@ -26,6 +26,7 @@ class Activities(str, Enum):
     QUEST = 'игры, квесты, головоломки'
     COOK = 'любит вкусно поесть'
     UNKNOWN = 'мы мало знакомы'
+    UNIVERSAL = 'universal'
 
 
 class Presents(dict, Enum):
@@ -55,7 +56,7 @@ class Presents(dict, Enum):
         'gender': [Gender.MALE, Gender.FEMALE],
         'person': [pers for pers in Person],
         'age': [5, 100],
-        'activities': {Activities.CULTURE, Activities.READ, Activities.HOME, Activities.UNKNOWN}
+        'activities': {Activities.CULTURE, Activities.READ, Activities.HOME, Activities.UNIVERSAL}
     }
     BOARD_GAME = {
         'name': 'Настольные игры',
@@ -118,21 +119,21 @@ class Presents(dict, Enum):
         'gender': [Gender.FEMALE],
         'person': [Person.FAMILY, Person.FRIEND, Person.TEACHER, Person.COLLEAGUE],
         'age': [18, 100],
-        'activities': {'universal'}
+        'activities': {Activities.UNIVERSAL}
     }
     COSM_CERT = {
         'name': 'Сертификат на мастер-класс по изготовлению косметики/духов',
         'gender': [Gender.FEMALE],
         'person': [Person.FAMILY, Person.FRIEND, Person.COLLEAGUE],
         'age': [18, 100],
-        'activities': {'universal', Activities.NEW}
+        'activities': {Activities.UNIVERSAL, Activities.NEW}
     }
     FASHION_CERT = {
         'name': 'Сертификат в магазин одежды',
         'gender': [Gender.FEMALE],
         'person': [Person.FAMILY, Person.FRIEND],
         'age': [18, 100],
-        'activities': {'universal'}
+        'activities': {Activities.UNIVERSAL}
     }
     SPORT_CERT = {
         'name': 'Сертификат на занятие спортом (скалолазание, серфинг, сплав на байдарках, аэротруба, командные игры и пр.)',
@@ -181,25 +182,28 @@ class Presents(dict, Enum):
         'gender': [Gender.FEMALE],
         'person': [pers for pers in Person],
         'age': [0, 100],
-        'activities': {'universal', Activities.UNKNOWN}
+        'activities': {Activities.UNIVERSAL}
     }
     SWEETS = {
         'name': 'Конфеты',
         'gender': [Gender.MALE, Gender.FEMALE],
         'person': [pers for pers in Person],
         'age': [0, 100],
-        'activities': {'universal', Activities.UNKNOWN}
+        'activities': {Activities.UNIVERSAL}
     }
     CAKE = {
         'name': 'Торт',
         'gender': [Gender.MALE, Gender.FEMALE],
         'person': [pers for pers in Person],
         'age': [0, 100],
-        'activities': {'universal', Activities.UNKNOWN}
+        'activities': {Activities.UNIVERSAL}
     }
 
 
 def get_age_str(age: int):
+    """
+    Function returns the correct form for number of years.
+    """
     if age % 10 == 1:
         if age % 100 == 11:
             year = 'лет'
@@ -215,21 +219,24 @@ def get_age_str(age: int):
     return year
 
 
-def get_person_type_with_gender(type: str, gender: str):
+def get_person_type_with_gender(person_type: str, gender: str):
+    """
+    Function returns receiver depending on his/her gender.
+    """
     person = ''
-    if type == Person.COLLEAGUE:
+    if person_type == Person.COLLEAGUE:
         person = 'коллеги'
-    elif type in (Person.TEACHER, Person.FELLOW):
+    elif person_type in (Person.TEACHER, Person.FELLOW):
         if gender == Gender.MALE:
-            person = type[:-1].lower() + 'я'
+            person = person_type[:-1].lower() + 'я'
         else:
-            person = type.lower() + 'ницы'
-    elif type == Person.FAMILY:
+            person = person_type.lower() + 'ницы'
+    elif person_type == Person.FAMILY:
         if gender == Gender.MALE:
             person = 'именинника'
         else:
             person = 'именинницы'
-    elif type == Person.FRIEND:
+    elif person_type == Person.FRIEND:
         if gender == Gender.MALE:
             person = 'друга'
         else:
@@ -238,15 +245,26 @@ def get_person_type_with_gender(type: str, gender: str):
 
 
 def generate_recommendation(person_info: dict):
-    person = get_person_type_with_gender(person_info['type'], person_info['gender'])
-    year = get_age_str(person_info['age'])
+    """
+    Function generates a list of birthday presents that can be suitable.
+    """
+    person = get_person_type_with_gender(
+        person_type=person_info['type'],
+        gender=person_info['gender']
+    )
+    year = get_age_str(
+        age=person_info['age']
+    )
     template = f"Варианты подарка для {person} на {person_info['age']} {year}:\n"
-    presents = ""
     cnt = 1
+    presents = ""
+    if 'activities' in person_info:
+        person_info['activities'].add(Activities.UNIVERSAL)
+    else:
+        person_info['activities'] = {Activities.UNIVERSAL}
     for present in list(Presents):
         if person_info['type'] in present['person'] and person_info['gender'] in present['gender']:
             if present['age'][0] <= person_info['age'] <= present['age'][1]:
-                person_info['activities'].add('universal')
                 if person_info['activities'] & present['activities']:
                     presents += f"{cnt}. {present['name']}\n"
                     cnt += 1
