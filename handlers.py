@@ -99,10 +99,10 @@ async def process_person_age(message: types.Message, state: FSMContext):
                 ending = 'цы'
                 pron = 'её'
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        buttons = [act for act in Activities][:-1]
+        buttons = [act for act in Activities][:-1] + ['stop']
         keyboard.add(*buttons)
         answer = f"Выберите, пожалуйста, увлечения именинни{ending} (если мало знаете о {pron } интересах, " \
-                 f"нажмите на 'мы мало знакомы').\nЧтобы закончить ввод, отправьте сообщение 'все', 'всё' или 'stop'."
+                 f"нажмите на 'мы мало знакомы').\nЧтобы закончить ввод, отправьте сообщение 'все'/'всё' или нажмите на 'stop'."
         await message.answer(answer, reply_markup=keyboard)
         await BotStates.waiting_activities.set()
 

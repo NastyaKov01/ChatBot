@@ -18,7 +18,6 @@ class Activities(str, Enum):
     CULTURE = 'культурные мероприятия'
     HOME = 'домосед'
     SPORT = 'активный образ жизни и спорт'
-    NATURE = 'природа'
     ANIMALS = 'животные'
     READ = 'чтение'
     NEW = 'любит узнавать новое'
@@ -126,7 +125,7 @@ class Presents(dict, Enum):
         'gender': [Gender.FEMALE],
         'person': [Person.FAMILY, Person.FRIEND, Person.COLLEAGUE],
         'age': [18, 100],
-        'activities': {Activities.UNIVERSAL, Activities.NEW}
+        'activities': {Activities.NEW}
     }
     FASHION_CERT = {
         'name': 'Сертификат в магазин одежды',
@@ -140,14 +139,14 @@ class Presents(dict, Enum):
         'gender': [Gender.MALE, Gender.FEMALE],
         'person': [Person.FAMILY, Person.FRIEND, Person.TEACHER, Person.COLLEAGUE],
         'age': [18, 50],
-        'activities': {Activities.SPORT, Activities.NEW}
+        'activities': {Activities.SPORT}
     }
     FIGHT_CERT = {
         'name': 'Сертификат на мастер-класс по стрельбе/борьбе',
         'gender': [Gender.MALE],
         'person': [Person.FAMILY, Person.FRIEND, Person.TEACHER, Person.COLLEAGUE],
         'age': [18, 50],
-        'activities': {Activities.SPORT, Activities.NEW}
+        'activities': {Activities.SPORT}
     }
     QUEST = {
         'name': 'Квест',
@@ -168,14 +167,14 @@ class Presents(dict, Enum):
         'gender': [Gender.MALE, Gender.FEMALE],
         'person': [Person.FAMILY, Person.FRIEND, Person.TEACHER, Person.COLLEAGUE],
         'age': [10, 100],
-        'activities': {Activities.NATURE, Activities.ANIMALS}
+        'activities': {Activities.ANIMALS}
     }
     HORSES = {
         'name': 'Конная прогулка',
         'gender': [Gender.MALE, Gender.FEMALE],
         'person': [Person.FAMILY, Person.FRIEND, ],
         'age': [12, 60],
-        'activities': {Activities.SPORT, Activities.NATURE, Activities.ANIMALS}
+        'activities': {Activities.SPORT, Activities.ANIMALS}
     }
     FLOWERS = {
         'name': 'Букет цветов',
