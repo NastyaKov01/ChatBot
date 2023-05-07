@@ -221,9 +221,9 @@ def get_person_type_with_gender(type: str, gender: str):
         person = 'коллеги'
     elif type in (Person.TEACHER, Person.FELLOW):
         if gender == Gender.MALE:
-            person = type[:-1] + 'я'
+            person = type[:-1].lower() + 'я'
         else:
-            person = type + 'ницы'
+            person = type.lower() + 'ницы'
     elif type == Person.FAMILY:
         if gender == Gender.MALE:
             person = 'именинника'

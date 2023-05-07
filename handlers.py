@@ -104,7 +104,7 @@ async def show_result(message: types.Message, state: FSMContext):
 
 
 def register_handlers(dp: Dispatcher):
-    dp.register_message_handler(process_start, commands=['start'])
+    dp.register_message_handler(process_start, commands=['start'], state='*')
     dp.register_message_handler(process_person_type, state=BotStates.waiting_person)
     dp.register_message_handler(process_person_gender, state=BotStates.waiting_gender)
     dp.register_message_handler(process_person_age, state=BotStates.waiting_age)
