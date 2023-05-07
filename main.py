@@ -7,7 +7,7 @@ from aiogram.dispatcher import Dispatcher
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
-from common import register_handlers
+from handlers import register_handlers
 
 
 class BotStates(StatesGroup):
