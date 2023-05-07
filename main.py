@@ -4,14 +4,17 @@ from dotenv import load_dotenv
 from aiogram import Bot
 from aiogram.utils import executor
 from aiogram.dispatcher import Dispatcher
-from aiogram.dispatcher.filters.state import State, StatesGroup
+# from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
 from handlers import register_handlers
 
 
-class BotStates(StatesGroup):
-    pass
+# class BotStates(StatesGroup):
+#     start_state = State()
+#     waiting_gender = State()
+#     waiting_age = State()
+#     waiting_activities = State()
 
 
 if __name__ == '__main__':

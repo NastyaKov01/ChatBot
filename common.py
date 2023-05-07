@@ -26,7 +26,6 @@ class Activities(str, Enum):
     QUEST = 'игры, квесты, головоломки'
     COOK = 'вкусно поесть'
     UNKNOWN = 'я мало знаком с человеком'
-    UNIVERSAL = ''
 
 
 class Presents(dict, Enum):
@@ -118,21 +117,21 @@ class Presents(dict, Enum):
         'gender': [Gender.FEMALE],
         'person': [Person.FAMILY, Person.FRIEND, Person.TEACHER, Person.COLLEAGUE],
         'age': [18, 100],
-        'activities': [Activities.UNIVERSAL]
+        'activities': ['universal']
     }
     COSM_CERT = {
         'name': 'Сертификат на мастер-класс по изготовлению косметики/духов',
         'gender': [Gender.FEMALE],
         'person': [Person.FAMILY, Person.FRIEND, Person.COLLEAGUE],
         'age': [18, 100],
-        'activities': [Activities.UNIVERSAL, Activities.NEW]
+        'activities': ['universal', Activities.NEW]
     }
     FASHION_CERT = {
         'name': 'Сертификат в магазин одежды',
         'gender': [Gender.FEMALE],
         'person': [Person.FAMILY, Person.FRIEND],
         'age': [18, 100],
-        'activities': [Activities.UNIVERSAL]
+        'activities': ['universal']
     }
     SPORT_CERT = {
         'name': 'Сертификат на занятие спортом (скалолазание, серфинг, сплав на байдарках, аэротруба, командные игры и пр.)',
@@ -181,19 +180,19 @@ class Presents(dict, Enum):
         'gender': [Gender.FEMALE],
         'person': [pers for pers in Person],
         'age': [0, 100],
-        'activities': [Activities.UNIVERSAL, Activities.UNKNOWN]
+        'activities': ['universal', Activities.UNKNOWN]
     }
     SWEETS = {
         'name': 'Конфеты',
         'gender': [Gender.MALE, Gender.FEMALE],
         'person': [pers for pers in Person],
         'age': [0, 100],
-        'activities': [Activities.UNIVERSAL, Activities.UNKNOWN]
+        'activities': ['universal', Activities.UNKNOWN]
     }
     CAKE = {
         'name': 'Торт',
         'gender': [Gender.MALE, Gender.FEMALE],
         'person': [pers for pers in Person],
         'age': [0, 100],
-        'activities': [Activities.UNIVERSAL, Activities.UNKNOWN]
+        'activities': ['universal', Activities.UNKNOWN]
     }
