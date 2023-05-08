@@ -55,7 +55,7 @@ class Presents(dict, Enum):
         'gender': [Gender.MALE, Gender.FEMALE],
         'person': [pers for pers in Person],
         'age': [5, 100],
-        'activities': {Activities.CULTURE, Activities.READ, Activities.HOME, Activities.UNIVERSAL}
+        'activities': {Activities.CULTURE, Activities.READ, Activities.HOME}
     }
     BOARD_GAME = {
         'name': 'Настольные игры',
@@ -95,7 +95,7 @@ class Presents(dict, Enum):
     DEGUSTATION = {
         'name': 'Билет на дегустацию (сыров, вина, шоколада, закусок и пр.)',
         'gender': [Gender.MALE, Gender.FEMALE],
-        'person': [Person.FAMILY, Person.FRIEND, Person.COLLEAGUE],
+        'person': [Person.FAMILY, Person.FRIEND, Person.TEACHER, Person.COLLEAGUE],
         'age': [18, 100],
         'activities': {Activities.NEW, Activities.COOK}
     }
@@ -109,7 +109,7 @@ class Presents(dict, Enum):
     PHOTO_CERT = {
         'name': 'Сертификат на мастер-класс по фотографии',
         'gender': [Gender.MALE, Gender.FEMALE],
-        'person': [Person.FAMILY, Person.FRIEND, Person.COLLEAGUE],
+        'person': [Person.FAMILY, Person.FRIEND, Person.TEACHER, Person.COLLEAGUE],
         'age': [18, 100],
         'activities': {Activities.PHOTO}
     }
@@ -174,7 +174,7 @@ class Presents(dict, Enum):
         'gender': [Gender.MALE, Gender.FEMALE],
         'person': [Person.FAMILY, Person.FRIEND, ],
         'age': [12, 60],
-        'activities': {Activities.SPORT, Activities.ANIMALS}
+        'activities': {Activities.SPORT}
     }
     FLOWERS = {
         'name': 'Букет цветов',

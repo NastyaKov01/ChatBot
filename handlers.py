@@ -67,9 +67,12 @@ async def process_person_gender(message: types.Message, state: FSMContext):
         await message.answer(answer, reply_markup=types.ReplyKeyboardRemove())
         await BotStates.waiting_age.set()
     else:
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        buttons = [gend for gend in Gender]
+        keyboard.add(*buttons)
         await message.answer('Извините, не смог распознать ваш ответ. ' +
                              'Выберите, пожалуйста, из предложенных вариантов' +
-                             surrogates.decode('\ud83d\ude04'))
+                             surrogates.decode('\ud83d\ude04'), reply_markup=keyboard)
 
 
 async def process_person_age(message: types.Message, state: FSMContext):
@@ -112,7 +115,7 @@ async def process_person_activities(message: types.Message, state: FSMContext):
     Waits for birthday person's activities (all of them) and changes the state.
     """
     activity = message.text
-    if activity in ('stop', 'все', 'всё', 'мы мало знакомы'):
+    if activity.lower() in ('stop', 'все', 'всё', 'мы мало знакомы'):
         await message.answer('Вот, что я могу порекомендовать!' + surrogates.decode('\u2728'),
                              reply_markup=types.ReplyKeyboardRemove())
         async with state.proxy() as person_info:
@@ -126,8 +129,11 @@ async def process_person_activities(message: types.Message, state: FSMContext):
             else:
                 person_info['activities'].add(activity)
     else:
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        buttons = [act for act in Activities][:-1] + ['stop']
+        keyboard.add(*buttons)
         await message.answer('К сожалению, не смог распознать ответ. Выберите, пожалуйста, из предложенных вариантов' +
-                             surrogates.decode('\ud83d\ude0a'))
+                             surrogates.decode('\ud83d\ude0a'), reply_markup=keyboard)
 
 
 async def process_unknown_message(message: types.Message):
