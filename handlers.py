@@ -46,9 +46,12 @@ async def process_person_type(message: types.Message, state: FSMContext):
         await message.answer('Какого пола именинник?', reply_markup=keyboard)
         await BotStates.waiting_gender.set()
     else:
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        buttons = [pers for pers in Person]
+        keyboard.add(*buttons)
         await message.answer('Не могу распознать тип получателя. ' +
                              'Выберите, пожалуйста, из предложенных вариантов' +
-                             surrogates.decode('\ud83d\ude0a'))
+                             surrogates.decode('\ud83d\ude0a'), reply_markup=keyboard)
 
 
 async def process_person_gender(message: types.Message, state: FSMContext):
