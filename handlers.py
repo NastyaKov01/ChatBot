@@ -24,7 +24,7 @@ async def process_start(message: types.Message):
     await message.reply(text='Привет!' + surrogates.decode('\ud83d\ude0a') +
                              'Я бот-помощник.\nПомогу с выбором подарка на день рождения!'
                              + surrogates.decode('\ud83c\udf89'))
-    answer = "Кому хотите подарить подарок?"
+    answer = "Кому хотите подобрать подарок?"
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     buttons = [pers for pers in Person]
     keyboard.add(*buttons)
